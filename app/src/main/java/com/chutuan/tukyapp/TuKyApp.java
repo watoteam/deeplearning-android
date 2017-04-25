@@ -2,15 +2,14 @@ package com.chutuan.tukyapp;
 
 import android.app.Application;
 
-import com.chutuan.tukyapp.local_data.TuKySharedPref_;
+import com.chutuan.tukyapp.local_data.DataSharedPref_;
+import com.chutuan.tukyapp.local_data.UserSharedPref_;
 import com.chutuan.tukyapp.network.NetworkModule;
 
 import org.androidannotations.annotations.EApplication;
 import org.androidannotations.annotations.sharedpreferences.Pref;
-import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
 import lombok.Getter;
-import retrofit2.http.GET;
 
 @EApplication
 public class TuKyApp extends Application {
@@ -19,7 +18,11 @@ public class TuKyApp extends Application {
 
     @Pref
     @Getter
-    TuKySharedPref_ pref;
+    UserSharedPref_ userPref;
+
+    @Pref
+    @Getter
+    DataSharedPref_ dataPref;
 
     @Override
     public void onCreate() {

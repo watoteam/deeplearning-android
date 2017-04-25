@@ -3,6 +3,7 @@ package com.chutuan.tukyapp;
 
 import com.chutuan.tukyapp.network.NetworkModule;
 import com.chutuan.tukyapp.ui.auth.login.LoginFragment;
+import com.chutuan.tukyapp.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 
@@ -17,4 +18,5 @@ import dagger.Component;
 @Component(modules = {AppModule.class, NetworkModule.class})
 public interface AppComponent {
     void inject(LoginFragment fragment);
+    void inject(MainActivity act);
 }

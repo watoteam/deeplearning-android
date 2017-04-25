@@ -2,25 +2,23 @@ package com.chutuan.tukyapp.network.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Getter;
 
 public class ResponseWrapper<T> {
+    @Getter
     @SerializedName("success")
-    boolean success;
+    private boolean success;
 
+    @Getter
     @SerializedName("status")
-    int status;
+    private int status;
 
+    @Getter
     @SerializedName("message")
-    boolean message;
+    private String message;
 
+    @Getter
     @SerializedName("data")
-    T data;
+    private T data;
 
-    public T getData() {
-        return data;
-    }
-
-    public boolean isSuccessful() {
-        return success;
-    }
 }
