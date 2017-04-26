@@ -109,13 +109,9 @@ public class MainActivity extends BaseActivity {
             public void onResponse(Call<ResponseWrapper<Object>> call, Response<ResponseWrapper<Object>> response) {
                 DialogUtils.dismissProgressDialog();
                 if (response.isSuccessful()) {
-                    if (response.body().isSuccess()) {
-                        TuKyApp_.getInstance().getUserPref().edit().clear().apply();
-                        AuthActivity_.intent(MainActivity.this).start();
-                        finish();
-                    } else {
-                        DialogUtils.showToast(response.body().getMessage());
-                    }
+                    TuKyApp_.getInstance().getUserPref().edit().clear().apply();
+                    AuthActivity_.intent(MainActivity.this).start();
+                    finish();
                 }
             }
 

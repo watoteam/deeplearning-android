@@ -95,37 +95,37 @@ public class RegisterFragment extends BaseLoginRegisterFragment {
     }
 
     private boolean validate() {
-        EmptyValidator emptyValidator = new EmptyValidator("Không được để trống");
+        EmptyValidator emptyValidator = new EmptyValidator("Vui lòng điền đầy đủ thông tin");
         LengthValidator lengthValidator = new LengthValidator("Mật khẩu phải lớn hơn 6 ký tự", 6, Integer.MAX_VALUE);
         EmailValidator emailValidator = new EmailValidator("Email không đúng định dạng");
 
         if (!emptyValidator.isValid(edtFirstname)) {
-            edtFirstname.setError(emptyValidator.getErrorMessage());
+            DialogUtils.showToast(emptyValidator.getErrorMessage());
             return false;
         }
 
         if (!emptyValidator.isValid(edtLastname)) {
-            edtFirstname.setError(emptyValidator.getErrorMessage());
+            DialogUtils.showToast(emptyValidator.getErrorMessage());
             return false;
         }
 
         if (!emptyValidator.isValid(edtEmail)) {
-            edtFirstname.setError(emptyValidator.getErrorMessage());
+            DialogUtils.showToast(emptyValidator.getErrorMessage());
             return false;
         }
 
         if (!emptyValidator.isValid(edtPassword)) {
-            edtFirstname.setError(emptyValidator.getErrorMessage());
+            DialogUtils.showToast(emptyValidator.getErrorMessage());
             return false;
         }
 
         if (!lengthValidator.isValid(edtPassword)) {
-            edtPassword.setError(lengthValidator.getErrorMessage());
+            DialogUtils.showToast(lengthValidator.getErrorMessage());
             return false;
         }
 
         if (!emailValidator.isValid(edtEmail)) {
-            edtEmail.setError(emailValidator.getErrorMessage());
+            DialogUtils.showToast(emailValidator.getErrorMessage());
             return false;
         }
         return true;

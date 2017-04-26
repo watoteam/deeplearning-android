@@ -77,7 +77,7 @@ public class LoginFragment extends BaseLoginRegisterFragment {
     }
 
     private boolean validate() {
-        EmptyValidator emptyValidator = new EmptyValidator("Không được để trống");
+        EmptyValidator emptyValidator = new EmptyValidator("Vui lòng điền đầy đủ thông tin");
         LengthValidator pwdValidator = new LengthValidator("Mật khẩu phải lớn hơn 6 ký tự", 6, Integer.MAX_VALUE);
         EmailValidator emailValidator = new EmailValidator("Email không đúng định dạng");
 
