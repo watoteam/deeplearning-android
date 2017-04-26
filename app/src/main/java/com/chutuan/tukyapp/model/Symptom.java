@@ -19,6 +19,11 @@ public class Symptom {
     @SerializedName("attributes")
     ArrayList<Symptom> childs;
 
+    public Symptom(String content, int value) {
+        this.content = content;
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return content;

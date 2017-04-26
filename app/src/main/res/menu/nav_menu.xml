@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/menu_diagnose"
-        android:icon="@drawable/ic_menu_diagnose"
-        android:title="@string/diagnose" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_diagnose"
+            android:title="@string/diagnose" />
 
-    <item
-        android:id="@+id/menu_history"
-        android:icon="@drawable/ic_menu_history"
-        android:title="@string/history" />
+        <item
+            android:id="@+id/menu_history"
+            android:title="@string/history" />
 
-    <item
-        android:id="@+id/menu_logout"
-        android:icon="@drawable/ic_menu_history"
-        android:title="@string/logout" />
+        <item
+            android:id="@+id/menu_logout"
+            android:title="@string/logout" />
+    </group>
+
 </menu>

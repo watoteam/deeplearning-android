@@ -32,10 +32,7 @@ public class AuthActivity extends BaseActivity {
             registerFragment = RegisterFragment_.builder().build();
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.contentFrame, loginFragment)
-                .disallowAddToBackStack()
-                .commit();
+        gotoLogin();
     }
 
     private void checkLoggedIn(){
@@ -49,8 +46,14 @@ public class AuthActivity extends BaseActivity {
     public void gotoRegister(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.contentFrame, registerFragment)
-                .addToBackStack(null)
+                .disallowAddToBackStack()
                 .commit();
+    }
 
+    public void gotoLogin(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.contentFrame, loginFragment)
+                .disallowAddToBackStack()
+                .commit();
     }
 }

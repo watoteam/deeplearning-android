@@ -12,7 +12,7 @@ import com.chutuan.tukyapp.R;
 import com.chutuan.tukyapp.TuKyApp_;
 import com.chutuan.tukyapp.model.User;
 import com.chutuan.tukyapp.network.response.ResponseWrapper;
-import com.chutuan.tukyapp.network.services.AuthService;
+import com.chutuan.tukyapp.network.services.ApiService;
 import com.chutuan.tukyapp.ui.BaseActivity;
 import com.chutuan.tukyapp.ui.auth.AuthActivity_;
 import com.chutuan.tukyapp.ui.main.diagnose.DiagnoseFragment;
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
     DrawerLayout drawerLayout;
 
     @Inject
-    AuthService authService;
+    ApiService apiService;
 
     @AfterViews
     void afterViews() {
@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity {
         }
 
         replaceFragment(diagnoseFragment);
+        navMenu.getMenu().getItem(0).setChecked(true);
         setTitle("Chẩn đoán");
 
         navMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -76,9 +77,11 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.menu_diagnose) {
                     replaceFragment(diagnoseFragment);
+                    item.setChecked(true);
                     setTitle("Chẩn đoán");
                 } else if (item.getItemId() == R.id.menu_history) {
                     replaceFragment(historyFragment);
+                    item.setChecked(true);
                     setTitle("Lịch sử");
                 } else if (item.getItemId() == R.id.menu_logout) {
                     doLogout();
@@ -100,9 +103,11 @@ public class MainActivity extends BaseActivity {
 
     private void doLogout() {
         String accessToken = TuKyApp_.getInstance().getUserPref().accessToken().getOr(null);
-        authService.logout(accessToken).enqueue(new Callback<ResponseWrapper<Object>>() {
+        DialogUtils.showProgressDialog(this, "Đăng đăng xuất...");
+        apiService.logout(accessToken).enqueue(new Callback<ResponseWrapper<Object>>() {
             @Override
             public void onResponse(Call<ResponseWrapper<Object>> call, Response<ResponseWrapper<Object>> response) {
+                DialogUtils.dismissProgressDialog();
                 if (response.isSuccessful()) {
                     if (response.body().isSuccess()) {
                         TuKyApp_.getInstance().getUserPref().edit().clear().apply();
@@ -116,7 +121,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<ResponseWrapper<Object>> call, Throwable t) {
-
+                DialogUtils.dismissProgressDialog();
             }
         });
     }

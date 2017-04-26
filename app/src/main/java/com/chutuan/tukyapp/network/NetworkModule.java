@@ -4,10 +4,7 @@ import android.app.Application;
 
 
 import com.chutuan.tukyapp.BuildConfig;
-import com.chutuan.tukyapp.model.Symptom;
-import com.chutuan.tukyapp.network.services.AuthService;
-import com.chutuan.tukyapp.network.services.SymptomService;
-import com.chutuan.tukyapp.network.services.UserService;
+import com.chutuan.tukyapp.network.services.ApiService;
 
 import java.io.IOException;
 
@@ -68,19 +65,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    UserService provideUserService(Retrofit retrofit) {
-        return retrofit.create(UserService.class);
-    }
-
-    @Provides
-    @Singleton
-    AuthService provideAuthService(Retrofit retrofit) {
-        return retrofit.create(AuthService.class);
-    }
-
-    @Provides
-    @Singleton
-    SymptomService provideSymptomService(Retrofit retrofit) {
-        return retrofit.create(SymptomService.class);
+    ApiService provideSymptomService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
     }
 }

@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import com.chutuan.tukyapp.R;
 import com.chutuan.tukyapp.TuKyApp_;
+import com.chutuan.tukyapp.custom.MyRecyclerViewAdapter;
 import com.chutuan.tukyapp.model.Symptom;
-import com.chutuan.tukyapp.ui.MyRecyclerViewAdapter;
 import com.chutuan.tukyapp.utils.GsonUtils;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,10 +50,12 @@ public class SymptomsAdapter extends MyRecyclerViewAdapter<Symptom, SymptomsAdap
 
         @Override
         public void onBind(Symptom item, int pos) {
-            tvLabel.setText(item.getContent());
+            tvLabel.setText(String.format("%d. %s", (pos + 1), item.getContent()));
+
             if (spChilds.getAdapter() == null) {
-                ArrayAdapter<Symptom> spinnerAdapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_list_item_1, item.getChilds());
-                spChilds.setAdapter(spinnerAdapter);
+                item.getChilds().add(0, new Symptom("Không có lựa chọn", 0));
+                ArrayAdapter<Symptom> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_list_item_1, item.getChilds());
+                spChilds.setAdapter(adapter);
             }
         }
     }

@@ -9,7 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vui lòng chọn một số triệu chứng."
+        android:text="Vui lòng chọn."
         android:textColor="#000"
         android:textSize="22sp" />
 

@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.auth.AuthActivity_"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivity_" />
+        <activity
+            android:name=".ui.main.MainActivity_"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
