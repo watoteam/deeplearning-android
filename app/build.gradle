@@ -43,4 +43,5 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.16'
 
     compile 'com.mikhaellopez:circularimageview:3.0.2'
+
 }

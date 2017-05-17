@@ -11,8 +11,14 @@
             android:title="@string/history" />
 
         <item
+            android:id="@+id/menu_profile"
+            android:title="@string/profile" />
+
+        <item
             android:id="@+id/menu_logout"
             android:title="@string/logout" />
+
+
     </group>
 
 </menu>

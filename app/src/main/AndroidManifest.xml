@@ -30,6 +30,11 @@
         <activity
             android:name=".ui.main.MainActivity_"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.profile.ChangePasswordActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
     </application>
 
 </manifest>

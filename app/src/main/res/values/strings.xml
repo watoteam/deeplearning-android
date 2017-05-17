@@ -6,4 +6,6 @@
 
     <!-- Strings related to login -->
     <string name="logout">Đăng xuất</string>
+    <string name="profile">Thông tin tài khoản</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
 </resources>

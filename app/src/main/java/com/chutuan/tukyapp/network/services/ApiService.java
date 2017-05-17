@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 /**
  * Created by Trieu Tuan on 4/25/2017.
@@ -42,4 +43,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("diagnosis")
     Call<ResponseWrapper<Diagnose>> diagnose(@Header("Authorization") String token, @Field("symptoms") String symptoms);
+
+    @FormUrlEncoded
+    @PUT("users/change-password")
+    Call<ResponseWrapper<UserResponse>> updatePassword(@Header("Authorization") String token,
+                                                       @Field("old_password") String oldPassword,
+                                                       @Field("password") String password,
+                                                       @Field("password_confirmation") String password_confirmation);
+
 }

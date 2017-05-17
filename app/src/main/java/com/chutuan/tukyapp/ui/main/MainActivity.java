@@ -19,11 +19,14 @@ import com.chutuan.tukyapp.ui.main.diagnose.DiagnoseFragment;
 import com.chutuan.tukyapp.ui.main.diagnose.DiagnoseFragment_;
 import com.chutuan.tukyapp.ui.main.history.HistoryFragment;
 import com.chutuan.tukyapp.ui.main.history.HistoryFragment_;
+import com.chutuan.tukyapp.ui.main.profile.ProfileFragment;
+import com.chutuan.tukyapp.ui.main.profile.ProfileFragment_;
 import com.chutuan.tukyapp.utils.DialogUtils;
 import com.chutuan.tukyapp.utils.GsonUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.FragmentByTag;
 import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
@@ -36,7 +39,10 @@ import retrofit2.Response;
 @EActivity(R.layout.main_activity)
 public class MainActivity extends BaseActivity {
     private HistoryFragment historyFragment;
+
     private DiagnoseFragment diagnoseFragment;
+
+    private ProfileFragment profileFragment;
 
     private TextView tvName;
     private TextView tvEmail;
@@ -68,6 +74,10 @@ public class MainActivity extends BaseActivity {
             diagnoseFragment = DiagnoseFragment_.builder().build();
         }
 
+        if (profileFragment == null) {
+            profileFragment = ProfileFragment_.builder().build();
+        }
+
         replaceFragment(diagnoseFragment);
         navMenu.getMenu().getItem(0).setChecked(true);
         setTitle("Chẩn đoán");
@@ -78,13 +88,17 @@ public class MainActivity extends BaseActivity {
                 if (item.getItemId() == R.id.menu_diagnose) {
                     replaceFragment(diagnoseFragment);
                     item.setChecked(true);
-                    setTitle("Chẩn đoán");
+                    setTitle(R.string.diagnose);
                 } else if (item.getItemId() == R.id.menu_history) {
                     replaceFragment(historyFragment);
                     item.setChecked(true);
-                    setTitle("Lịch sử");
+                    setTitle(R.string.history);
                 } else if (item.getItemId() == R.id.menu_logout) {
                     doLogout();
+                } else if (item.getItemId() == R.id.menu_profile) {
+                    replaceFragment(profileFragment);
+                    item.setChecked(true);
+                    setTitle(R.string.profile);
                 }
                 drawerLayout.closeDrawers();
                 return false;
