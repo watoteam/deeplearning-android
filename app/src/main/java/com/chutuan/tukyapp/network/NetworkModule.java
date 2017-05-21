@@ -2,7 +2,6 @@ package com.chutuan.tukyapp.network;
 
 import android.app.Application;
 
-
 import com.chutuan.tukyapp.BuildConfig;
 import com.chutuan.tukyapp.network.services.ApiService;
 

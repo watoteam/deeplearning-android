@@ -8,4 +8,8 @@
     <string name="logout">Đăng xuất</string>
     <string name="profile">Thông tin tài khoản</string>
     <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="author">Thông tin tác giả</string>
+    <string name="app_description">Nghiên cứu và ứng dụng mạng nơ-ron chẩn đoán tiền tự kỷ</string>
+    <string name="menu_refresh">Làm tươi</string>
+    <string name="diagnose_prompt">Vui lòng chọn các câu trả lời phù hợp với tình trạng hiện tại của trẻ.</string>
 </resources>

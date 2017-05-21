@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by Trieu Tuan on 4/26/2017.
@@ -21,8 +22,9 @@ public class Diagnose {
     String message;
 
     @Getter
+    @Setter
     @SerializedName("per_cent")
-    Double percent;
+    Float percent;
 
     @Getter
     @SerializedName("advice")

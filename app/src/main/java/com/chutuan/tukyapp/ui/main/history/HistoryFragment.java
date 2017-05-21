@@ -13,6 +13,7 @@ import com.chutuan.tukyapp.network.response.HistoryResponse;
 import com.chutuan.tukyapp.network.response.ResponseWrapper;
 import com.chutuan.tukyapp.network.services.ApiService;
 import com.chutuan.tukyapp.ui.BaseFragment;
+import com.chutuan.tukyapp.utils.DialogUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -71,6 +72,8 @@ public class HistoryFragment extends BaseFragment {
                     if (response.body().isSuccess()) {
                         ArrayList<Diagnose> histories = response.body().getData().getHistories();
                         mAdapter.setList(histories);
+                    }else{
+                        DialogUtils.showToast(response.body().getMessage());
                     }
                 }
             }

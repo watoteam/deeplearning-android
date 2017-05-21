@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.chutuan.tukyapp.network.response.ResponseWrapper;
 import com.chutuan.tukyapp.network.services.ApiService;
 import com.chutuan.tukyapp.ui.BaseActivity;
 import com.chutuan.tukyapp.ui.auth.AuthActivity_;
+import com.chutuan.tukyapp.ui.dialog.WebviewDialog;
 import com.chutuan.tukyapp.ui.main.diagnose.DiagnoseFragment;
 import com.chutuan.tukyapp.ui.main.diagnose.DiagnoseFragment_;
 import com.chutuan.tukyapp.ui.main.history.HistoryFragment;
@@ -26,7 +28,6 @@ import com.chutuan.tukyapp.utils.GsonUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.FragmentByTag;
 import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
@@ -106,6 +107,20 @@ public class MainActivity extends BaseActivity {
         });
         displayProfile();
         drawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_option_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_info){
+            WebviewDialog.show(this, null, "file:///android_asset/about_us.html");
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void replaceFragment(Fragment fragment) {

@@ -1,6 +1,8 @@
 package com.chutuan.tukyapp.ui.main.diagnose;
 
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,12 +23,19 @@ import java.util.ArrayList;
  */
 
 public class SymptomsAdapter extends MyRecyclerViewAdapter<Symptom, SymptomsAdapter.SymptomVH> {
-    public SymptomsAdapter() {
+    public void refreshDataSet() {
         try {
             String json = TuKyApp_.getInstance().getDataPref().symptoms().getOr(null);
             Type type = new TypeToken<ArrayList<Symptom>>() {
             }.getType();
             ArrayList<Symptom> list = GsonUtils.fromJson(json, type);
+
+            Symptom symptom = new Symptom("Không có lựa chọn", 0);
+            for (Symptom item : list) {
+                if (!item.getChilds().contains(symptom)) {
+                    item.getChilds().add(0, symptom);
+                }
+            }
             setList(list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,6 +50,7 @@ public class SymptomsAdapter extends MyRecyclerViewAdapter<Symptom, SymptomsAdap
     public class SymptomVH extends MyRecyclerViewAdapter.ViewHolder<Symptom> {
         public TextView tvLabel;
         public Spinner spChilds;
+        private ArrayAdapter<Symptom> symptomAdapter;
 
         public SymptomVH(ViewGroup parent, int resId) {
             super(parent, resId);
@@ -49,14 +59,25 @@ public class SymptomsAdapter extends MyRecyclerViewAdapter<Symptom, SymptomsAdap
         }
 
         @Override
-        public void onBind(Symptom item, int pos) {
+        public void onBind(final Symptom item, int pos) {
             tvLabel.setText(String.format("%d. %s", (pos + 1), item.getContent()));
+            symptomAdapter = new ArrayAdapter<>(itemView.getContext(),
+                    android.R.layout.simple_list_item_1, item.getChilds());
+            spChilds.setAdapter(symptomAdapter);
 
-            if (spChilds.getAdapter() == null) {
-                item.getChilds().add(0, new Symptom("Không có lựa chọn", 0));
-                ArrayAdapter<Symptom> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_list_item_1, item.getChilds());
-                spChilds.setAdapter(adapter);
-            }
+            spChilds.setSelection(item.selectedChildPos);
+
+            spChilds.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    item.selectedChildPos = position;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    item.selectedChildPos = 0;
+                }
+            });
         }
     }
 }

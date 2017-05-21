@@ -9,9 +9,9 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vui lòng chọn."
+        android:text="@string/diagnose_prompt"
         android:textColor="#000"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSymptoms"
